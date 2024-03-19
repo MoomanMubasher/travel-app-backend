@@ -8,7 +8,7 @@ class Response {
         return res.status(200).json({
             success: true,
             data: this.data,
-            message: this.message ?? "İşlem Başarılı"
+            message: this.message ?? "Success"
         })
     }
 
@@ -16,7 +16,7 @@ class Response {
         return res.status(201).json({
             success: true,
             data: this.data,
-            message: this.message ?? "İşlem Başarılı"
+            message: this.message ?? "Created"
         })
     }
 
@@ -24,7 +24,7 @@ class Response {
         return res.status(500).json({
             success: false,
             data: this.data,
-            message: this.message ?? "İşlem Başarısız !"
+            message: this.message ?? "Error 500"
         })
     }
 
@@ -32,7 +32,7 @@ class Response {
         return res.status(400).json({
             success: false,
             data: this.data,
-            message: this.message ?? "İşlem Başarısız !"
+            message: this.message ?? "Error 400"
         })
     }
 
@@ -40,7 +40,7 @@ class Response {
         return res.status(401).json({
             success: false,
             data: this.data,
-            message: this.message ?? "Lütfen Oturum Açın !"
+            message: this.message ?? "Error 401"
         })
     }
 
@@ -48,7 +48,7 @@ class Response {
         return res.status(404).json({
             success: false,
             data: this.data,
-            message: this.message ?? "İşlem Başarısız !"
+            message: this.message ?? "Error 404"
         })
     }
 
@@ -56,7 +56,7 @@ class Response {
         return res.status(429).json({
             success: false,
             data: this.data,
-            message: this.message ?? "Çok Fazla İstek Atıldı !"
+            message: this.message ?? "Error 429"
         })
     }
 

@@ -5,8 +5,8 @@ mongoose.connect(process.env.DB_URL, {
     useUnifiedTopology: true
 })
     .then(() => {
-        console.log("Veritabanına Başarıyla Bağlandı");
+        console.log("Connected");
     })
     .catch((err) => {
-        console.log("Veritabanına bağlanırken hata çıktı : ", err);
+        console.log("Error In DB Connection : ", err);
     })
