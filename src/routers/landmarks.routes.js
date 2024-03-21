@@ -13,28 +13,30 @@ const {
     updateLandmarkRating
 } = require("../controllers/landmark.controller");
 const uploadMiddleware = require("../middlewares/lib/upload");
+const { verifyToken } = require("../middlewares/tokenVerfiy");
 
-router.get("/landmarks",getAllLandmarks);
 
-router.get("/specific-landmarks",getLandmarksByLocation);
+router.get("/landmarks",verifyToken,getAllLandmarks);
 
-router.post('/landmarks/:id/comments', addCommentToLandmark);
+router.get("/specific-landmarks",verifyToken,getLandmarksByLocation);
 
-router.put('/landmarks/:id/comments/:commentId', updateLandmarkComments);
+router.post('/landmarks/:id/comments',verifyToken,addCommentToLandmark);
 
-router.put('/landmarks/:id/ratings/:ratingId', updateLandmarkRating);
+router.put('/landmarks/:id/comments/:commentId',verifyToken,updateLandmarkComments);
 
-router.delete('/landmarks/:id/comments/:commentId', deleteLandmarkComment);
+router.put('/landmarks/:id/ratings/:ratingId',verifyToken, updateLandmarkRating);
 
-router.post('/landmarks/:id/ratings', addRatingToLandmark);
+router.delete('/landmarks/:id/comments/:commentId',verifyToken, deleteLandmarkComment);
 
-router.post("/landmarks",uploadMiddleware,createLandmark);
+router.post('/landmarks/:id/ratings',verifyToken,addRatingToLandmark);
 
-router.get("/landmarks/:id", getLandmarkById);
+router.post("/landmarks",uploadMiddleware,verifyToken,createLandmark);
 
-router.put('/landmarks/:id', updateLandmarkById);
+router.get("/landmarks/:id",verifyToken,getLandmarkById);
 
-router.delete('/landmarks/:id', deleteLandmarkById);
+router.put('/landmarks/:id',verifyToken, updateLandmarkById);
+
+router.delete('/landmarks/:id',verifyToken, deleteLandmarkById);
 
 
 

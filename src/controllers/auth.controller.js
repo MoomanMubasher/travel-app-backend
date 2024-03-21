@@ -3,23 +3,21 @@ const bcrypt = require("bcrypt");
 const APIError = require("../utils/errors");
 const Response = require("../utils/response");
 // const { createToken, createTemporaryToken, decodedTemporaryToken } = require("../middlewares/auth");
-const crypto = require("crypto");
+// const crypto = require("crypto");
 // const sendEmail = require("../utils/sendMail");
 const moment = require("moment");
+const jwt = require('jsonwebtoken');
+
+const secretKey = 'abc123';
 
 const login = async (req, res) => {
-  console.log("login");
   const { email, password } = req.body;
-
-  const userInfo = await user.findOne({ email });
-
+  let userInfo = await user.findOne({ email });
   if (!userInfo) throw new APIError("User not found!", 401);
-
   const comparePassword = await bcrypt.compare(password, userInfo.password);
-  console.log(comparePassword);
-
   if (!comparePassword) throw new APIError("Incorrect Password", 401);
-
+  const token = jwt.sign({ userId: user._id }, secretKey, { expiresIn: '24h' });
+  userInfo = {...userInfo,token}
   return new Response(userInfo, "User Created Successfully").success(res);
 };
 

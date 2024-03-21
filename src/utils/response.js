@@ -7,7 +7,7 @@ class Response {
     success(res) {
         return res.status(200).json({
             success: true,
-            data: this.data,
+            data: {...this.data?._doc,token:this.data?.token},
             message: this.message ?? "Success"
         })
     }
