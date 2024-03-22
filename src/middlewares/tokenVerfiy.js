@@ -4,7 +4,7 @@ const secretKey = "abc123"
 // Middleware to verify JWT
 const verifyToken = (req, res, next) => {
     const token = req.headers['authorization'];
-    const tokenWithoutBearer = token.substring(7);
+    const tokenWithoutBearer = token?.substring(7);
     if (!tokenWithoutBearer) {
         return res.status(401).send('Access denied. Token is required');
     }
