@@ -17,6 +17,7 @@ mongoose.connect(process.env.DB_URL, {
             if (!admin) {
               // Create admin user
               const newAdmin = new user({
+                name:'Admin',
                 email: 'admin@gmail.com',
                 password: 'admin123', // Use secure password hashing in a real-world scenario
                 role: 'admin',

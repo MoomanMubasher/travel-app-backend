@@ -2,6 +2,7 @@ const router = require("express").Router();
 const {
   login,
   register,
+  adminLogin,
   me,
   forgetPassword,
   resetCodeCheck,
@@ -10,6 +11,8 @@ const {
 
 // router.post("/login", authValidation.login, login);
 router.post("/login",login);
+
+router.post("/admin-login",adminLogin);
 
 router.post("/register", register);
 
